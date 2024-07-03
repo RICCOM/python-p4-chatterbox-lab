@@ -26,7 +26,7 @@ def create_message():
     username = data.get('username')
 
     if not body or not username:
-        return make_response(jsonify({"error": "Body and username are required"}), 400)
+        return jsonify({"error": "Body and username are required"}), 400
 
     new_message = Message(body=body, username=username)
     db.session.add(new_message)
@@ -41,7 +41,7 @@ def update_message(id):
     body = data.get('body')
 
     if not body:
-        return make_response(jsonify({"error": "Body is required"}), 400)
+        return jsonify({"error": "Body is required"}), 400
 
     message.body = body
     message.updated_at = datetime.utcnow()

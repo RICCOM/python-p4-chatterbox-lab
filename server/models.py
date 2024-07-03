@@ -13,14 +13,10 @@ class Message(db.Model, SerializerMixin):
     __tablename__ = 'messages'
 
     id = db.Column(db.Integer, primary_key=True)
-    body = db.Column(db.String(256), nullable=False)
-    username = db.Column(db.String(64), nullable=False)
+    body = db.Column(db.String, nullable=False)
+    username = db.Column(db.String, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
-
-    def __init__(self, body, username):
-        self.body = body
-        self.username = username
 
     def to_dict(self):
         return {
